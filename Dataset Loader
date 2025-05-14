@@ -1,0 +1,12 @@
+from sklearn.datasets import load_iris, load_digits
+
+def load_sample_dataset(name='iris'):
+    if name == 'iris':
+        data = load_iris()
+    elif name == 'digits':
+        data = load_digits()
+    else:
+        raise ValueError("Dataset not supported")
+
+    X, y = data.data, data.target
+    return X, y
