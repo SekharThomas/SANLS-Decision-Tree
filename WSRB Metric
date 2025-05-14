@@ -1,0 +1,2 @@
+def calculate_wsrbs(stabilities):
+    return np.median(stabilities), np.mean(stabilities), np.max(stabilities)
