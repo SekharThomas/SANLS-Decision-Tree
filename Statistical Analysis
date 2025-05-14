@@ -1,0 +1,10 @@
+def statistical_tests(results_list, model_names):
+    scores = np.array(results_list)
+    print("Wilcoxon Signed-Rank Test (Proposed vs. Others):")
+    for i, name in enumerate(model_names[1:], start=1):
+        stat, p = wilcoxon(scores[0], scores[i])
+        print(f"{model_names[0]} vs {name}: p={p:.4f}")
+
+    print("\nFriedman Test:")
+    stat, p = friedmanchisquare(*scores)
+    print(f"Statistic: {stat:.4f}, p={p:.4f}")
