@@ -1,0 +1,7 @@
+def benchmark_criteria(X, y):
+    results = []
+    for criterion in ['gini', 'entropy']:
+        res = run_experiment(X, y, criterion=criterion)
+        res['criterion'] = criterion
+        results.append(res)
+    return pd.DataFrame(results)
