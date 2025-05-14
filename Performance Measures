@@ -1,0 +1,19 @@
+def run_experiment(X, y, criterion='entropy', max_depth=None, n_bootstrap=80):
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+    model = SANLSTree(criterion=criterion, max_depth=max_depth, n_bootstrap=n_bootstrap)
+    start_time = time.time()
+    model.fit(X_train, y_train)
+    elapsed_time = time.time() - start_time
+
+    preds = model.predict(X_test)
+    acc = accuracy_score(y_test, preds)
+    median_wsrbs, mean_wsrbs, max_wsrbs = calculate_wsrbs(model.bootstrap_stability)
+
+    return {
+        'accuracy': acc,
+        'time': elapsed_time,
+        'median_wsrbs': median_wsrbs,
+        'mean_wsrbs': mean_wsrbs,
+        'max_wsrbs': max_wsrbs
+    }
